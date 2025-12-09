@@ -4,14 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSLModsCommon.Manager; 
+namespace CSLModsCommon.Manager;
+
 public sealed class Domain {
     private static readonly Dictionary<string, Domain> AllDomains = new();
     private static Domain _defaultDomain;
     public static Domain DefaultDomain => _defaultDomain ??= new Domain($"{AssemblyHelper.CurrentAssemblyName}DefaultDomain");
     private readonly Dictionary<Type, ManagerBase> _managerLookup;
     private readonly ILog _logger;
-    private bool _isCachedCoreManager;
+    private bool _isCachedModManager;
 
     public static event Action<Domain, ManagerBase> ManagerCreated;
     public static event Action<Domain, ManagerBase> ManagerDestroyed;
@@ -70,26 +71,28 @@ public sealed class Domain {
         return null;
     }
 
-    public ModManagerBase GetModManager() => _isCachedCoreManager ? GetModManager<ModManagerBase>() : null;
+    public ModManagerBase GetModManager() => _isCachedModManager ? GetModManager<ModManagerBase>() : null;
 
-    public void CacheModManager<T>(T manager) where T : ModManagerBase {
-        if (_isCachedCoreManager) return;
+    internal void CacheModManager<T>(T manager) where T : ModManagerBase {
+        if (_isCachedModManager) return;
         if (manager is null) {
             _logger.Error("Object is null when caching global manager");
             return;
         }
 
-        var type = manager.GetType();
-        if (!_managerLookup.ContainsKey(type)) {
-            _managerLookup.Add(type, manager);
-            _logger.Verbose($"Caching mod manager, type: {type}");
+        var runtimeType = manager.GetType();
+        if (!_managerLookup.ContainsKey(runtimeType)) {
+            _managerLookup.Add(runtimeType, manager);
+            _logger.Verbose($"Caching mod manager (runtime type): {runtimeType}");
         }
 
-        type = typeof(T);
-        if (_managerLookup.ContainsKey(type)) return;
-        _managerLookup.Add(type, manager);
-        _logger.Verbose($"Caching mod manager, type: {type}");
-        _isCachedCoreManager = true;
+        var genericType = typeof(T);
+        if (!_managerLookup.ContainsKey(genericType)) {
+            _managerLookup.Add(runtimeType, manager);
+            _logger.Verbose($"Caching mod manager (generic type): {genericType}");
+        }
+        
+        _isCachedModManager = true;
     }
 
     public void DestroyManager<T>() where T : ManagerBase {
