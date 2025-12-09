@@ -1,0 +1,12 @@
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.csproj.AssemblyReference.cache
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.GeneratedMSBuildEditorConfig.editorconfig
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.AssemblyInfoInputs.cache
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.AssemblyInfo.cs
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.csproj.CoreCompileInputs.cache
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\bin\Debug\net35\CSLModsCommon.ToolButton.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\bin\Debug\net35\CSLModsCommon.ToolButton.pdb
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\bin\Debug\net35\Newtonsoft.Json.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\bin\Debug\net35\UnifiedUILib.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsC.F25DF4CF.Up2Date
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.ToolButton\obj\Debug\net35\CSLModsCommon.ToolButton.pdb

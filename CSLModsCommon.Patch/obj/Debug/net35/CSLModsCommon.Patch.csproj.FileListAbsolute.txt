@@ -1,0 +1,12 @@
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\bin\Debug\net35\CSLModsCommon.Patch.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\bin\Debug\net35\CSLModsCommon.Patch.pdb
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\bin\Debug\net35\CitiesHarmony.API.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\bin\Debug\net35\Newtonsoft.Json.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.csproj.AssemblyReference.cache
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.GeneratedMSBuildEditorConfig.editorconfig
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.AssemblyInfoInputs.cache
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.AssemblyInfo.cs
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.csproj.CoreCompileInputs.cache
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsC.567C249E.Up2Date
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.dll
+D:\CitiesSkylines\Modding\CSLModsCommon\CSLModsCommon.Patch\obj\Debug\net35\CSLModsCommon.Patch.pdb

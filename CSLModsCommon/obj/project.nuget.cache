@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "V7Xd7bpXNEw=",
+  "success": true,
+  "projectFilePath": "D:\\CitiesSkylines\\Modding\\CSLModsCommon\\CSLModsCommon\\CSLModsCommon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SYS\\.nuget\\packages\\json.net.unity3d\\9.0.1\\json.net.unity3d.9.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

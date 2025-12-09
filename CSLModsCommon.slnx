@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Alpha" />
+    <BuildType Name="Beta" />
+    <BuildType Name="Stable" />
+  </Configurations>
+  <Project Path="CSLModsCommon.Patch/CSLModsCommon.Patch.csproj" Id="a6502419-1d98-4de1-b8a3-c7db27c6c4b5" />
+  <Project Path="CSLModsCommon.ToolButton/CSLModsCommon.ToolButton.csproj" Id="48c307a7-93ac-4090-a6e8-a2c1c55090e5" />
+  <Project Path="CSLModsCommon/CSLModsCommon.csproj" />
+  <Project Path="CSLModsCommonShared.Patch/CSLModsCommonShared.Patch.shproj" Id="9b8a25ca-17ca-41ef-ad0b-cdcaa676053a" />
+  <Project Path="CSLModsCommonShared.ToolButton/CSLModsCommonShared.ToolButton.shproj" Id="bd5b3618-10bf-4a34-bffb-df9eaa02b8ea" />
+  <Project Path="CSLModsCommonShared/CSLModsCommonShared.shproj" />
+  <Project Path="SharedTranslations/SharedTranslations.csproj" Id="a1a89aa3-352e-434d-8487-9fcf231bfd34" />
+</Solution>

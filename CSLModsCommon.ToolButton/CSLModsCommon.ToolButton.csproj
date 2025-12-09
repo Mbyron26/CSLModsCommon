@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net35</TargetFramework>
+		<LangVersion>11</LangVersion>
+		<Authors>Mbyron26</Authors>
+		<Copyright>Copyright © 2025 Mbyron26</Copyright>
+		<Version>1.0.0</Version>
+		<Product>CSLModsCommon.ToolButton</Product>
+		<ManagedPath>$([System.Environment]::GetEnvironmentVariable('CSI_MANAGEDPATH', 'EnvironmentVariableTarget.User'))</ManagedPath>
+		<Configurations>Alpha;Beta;Stable</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp" HintPath="$(ManagedPath)\Assembly-CSharp.dll" Private="false" />
+		<Reference Include="ColossalManaged" HintPath="$(ManagedPath)\ColossalManaged.dll" Private="false" />
+		<Reference Include="ICities" HintPath="$(ManagedPath)\ICities.dll" Private="false" />
+		<Reference Include="UnityEngine" HintPath="$(ManagedPath)\UnityEngine.dll" Private="false" />
+		<PackageReference Include="Json.Net.Unity3D" Version="9.0.1" />
+		<PackageReference Include="UnifiedUILib" Version="2.2.12" />
+	</ItemGroup>
+
+  <Import Project="..\CSLModsCommonShared\CSLModsCommonShared.projitems" Label="Shared" />
+  <Import Project="..\CSLModsCommonShared.ToolButton\CSLModsCommonShared.ToolButton.projitems" Label="Shared" />
+
+</Project>

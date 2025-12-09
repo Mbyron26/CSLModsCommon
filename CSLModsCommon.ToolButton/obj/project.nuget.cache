@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "FMZLukKaGdc=",
+  "success": true,
+  "projectFilePath": "D:\\CitiesSkylines\\Modding\\CSLModsCommon\\CSLModsCommon.ToolButton\\CSLModsCommon.ToolButton.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SYS\\.nuget\\packages\\json.net.unity3d\\9.0.1\\json.net.unity3d.9.0.1.nupkg.sha512",
+    "C:\\Users\\SYS\\.nuget\\packages\\unifieduilib\\2.2.12\\unifieduilib.2.2.12.nupkg.sha512"
+  ],
+  "logs": []
+}

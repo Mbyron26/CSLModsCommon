@@ -1,0 +1,181 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v3.5": {
+      "CitiesHarmony.API/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "CitiesHarmony.Harmony": "2.2.2"
+        },
+        "compile": {
+          "lib/net35/CitiesHarmony.API.dll": {}
+        },
+        "runtime": {
+          "lib/net35/CitiesHarmony.API.dll": {}
+        }
+      },
+      "CitiesHarmony.Harmony/2.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net35/CitiesHarmony.Harmony.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net35/_._": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Json.Net.Unity3D/9.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net35/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net35/Newtonsoft.Json.dll": {}
+        }
+      },
+      "UnifiedUILib/2.2.12": {
+        "type": "package",
+        "compile": {
+          "lib/net35/UnifiedUILib.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net35/UnifiedUILib.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CitiesHarmony.API/2.2.0": {
+      "sha512": "YyyiAp6RwQTDVYyhQIVDHS9ecaRpcXznOi/3I1yuw1u10T7Hyk3IF7AXgKSDzCcj9oYgjMaayCt4EIV3cRWrsQ==",
+      "type": "package",
+      "path": "citiesharmony.api/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "citiesharmony.api.2.2.0.nupkg.sha512",
+        "citiesharmony.api.nuspec",
+        "lib/net35/CitiesHarmony.API.dll",
+        "package_icon.png"
+      ]
+    },
+    "CitiesHarmony.Harmony/2.2.2": {
+      "sha512": "twjOyU9mQ4ZK5d3CqCfc+ktvulP4ZBRAe7nl32auHUxTdQaGTJtNpZRSRZIgz3jVRvZlftBM0nFWq8hIiBjEDA==",
+      "type": "package",
+      "path": "citiesharmony.harmony/2.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "HarmonyLogo.png",
+        "LICENSE",
+        "citiesharmony.harmony.2.2.2.nupkg.sha512",
+        "citiesharmony.harmony.nuspec",
+        "lib/net35/CitiesHarmony.Harmony.dll",
+        "lib/net35/CitiesHarmony.Harmony.xml"
+      ]
+    },
+    "Json.Net.Unity3D/9.0.1": {
+      "sha512": "rp7q5dZ1SxGJU9NcDp60ERg0UnuqcjZBmVQsBn463yp429K2BsJHaN53iI7c7rsRvoSsGhz3SUHv+Lvd/TIz1A==",
+      "type": "package",
+      "path": "json.net.unity3d/9.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "json.net.unity3d.9.0.1.nupkg.sha512",
+        "json.net.unity3d.nuspec",
+        "lib/net35/Newtonsoft.Json.dll"
+      ]
+    },
+    "UnifiedUILib/2.2.12": {
+      "sha512": "4Jei6jyIonq9wrZXRbuhmRNPsDQNEg0MEXTtL8HbIYOH58a79sDN4sWFtee3/wRYmqB/tLhR0n28kgpdXFmzIA==",
+      "type": "package",
+      "path": "unifieduilib/2.2.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "PreviewImage.png",
+        "lib/net35/UnifiedUILib.dll",
+        "lib/net35/UnifiedUILib.xml",
+        "unifieduilib.2.2.12.nupkg.sha512",
+        "unifieduilib.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v3.5": [
+      "CitiesHarmony.API >= 2.2.0",
+      "Json.Net.Unity3D >= 9.0.1",
+      "UnifiedUILib >= 2.2.12"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\SYS\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\CitiesSkylines\\Modding\\CSLModsCommon\\CSLModsCommon.Patch\\CSLModsCommon.Patch.csproj",
+      "projectName": "CSLModsCommon.Patch",
+      "projectPath": "D:\\CitiesSkylines\\Modding\\CSLModsCommon\\CSLModsCommon.Patch\\CSLModsCommon.Patch.csproj",
+      "packagesPath": "C:\\Users\\SYS\\.nuget\\packages\\",
+      "outputPath": "D:\\CitiesSkylines\\Modding\\CSLModsCommon\\CSLModsCommon.Patch\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\SYS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net35"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net35": {
+          "targetAlias": "net35",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
+    },
+    "frameworks": {
+      "net35": {
+        "targetAlias": "net35",
+        "dependencies": {
+          "CitiesHarmony.API": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
+          "Json.Net.Unity3D": {
+            "target": "Package",
+            "version": "[9.0.1, )"
+          },
+          "UnifiedUILib": {
+            "target": "Package",
+            "version": "[2.2.12, )"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
