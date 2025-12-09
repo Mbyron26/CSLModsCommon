@@ -27,7 +27,7 @@ public abstract class ModManagerBase : ManagerBase {
     public virtual Version ModVersion => AssemblyHelper.CurrentAssemblyVersion;
     public virtual string ModSteamURL => string.Empty;
 #if BETA
-            public virtual BuildChannel CurrentBuildChannel => BuildChannel.Beta;
+    public virtual BuildChannel CurrentBuildChannel => BuildChannel.Beta;
 #elif STABLE
             public virtual BuildChannel CurrentBuildChannel => BuildChannel.Stable;
 #else
@@ -62,10 +62,9 @@ public abstract class ModManagerBase : ManagerBase {
         OptionsPanelManager.SettingsUI(helper);
     }
 
-    protected override void OnCreate() {
-        base.OnCreate();
+    internal override void OnInstanceCreated() {
+        base.OnInstanceCreated();
         ChangeLogLevel();
-        Logger.Info("Mod manager instance created");
         Domain.CacheModManager(this);
     }
 

@@ -68,12 +68,12 @@ public abstract class ComponentManagerBase {
         _activeCoroutines.Clear();
     }
 
-    internal void OnInstanceCreated() {
+    internal virtual void OnInstanceCreated() {
         ManagerType = GetType();
         OnCreate();
     }
 
-    internal void OnInstanceDestroy() => OnDestroy();
+    internal virtual void OnInstanceDestroy() => OnDestroy();
 
     protected bool TryStartRoutine(IEnumerator routine, out Coroutine coroutine) {
         coroutine = null;

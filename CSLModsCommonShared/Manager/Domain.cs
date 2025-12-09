@@ -76,20 +76,14 @@ public sealed class Domain {
     internal void CacheModManager<T>(T manager) where T : ModManagerBase {
         if (_isCachedModManager) return;
         if (manager is null) {
-            _logger.Error("Object is null when caching global manager");
+            _logger.Error("Object is null when caching mod manager");
             return;
         }
-
-        var runtimeType = manager.GetType();
-        if (!_managerLookup.ContainsKey(runtimeType)) {
-            _managerLookup.Add(runtimeType, manager);
-            _logger.Verbose($"Caching mod manager (runtime type): {runtimeType}");
-        }
-
+        
         var genericType = typeof(T);
         if (!_managerLookup.ContainsKey(genericType)) {
-            _managerLookup.Add(runtimeType, manager);
-            _logger.Verbose($"Caching mod manager (generic type): {genericType}");
+            _managerLookup.Add(genericType, manager);
+            _logger.Verbose($"ModManagerBase cached: {genericType}");
         }
         
         _isCachedModManager = true;
