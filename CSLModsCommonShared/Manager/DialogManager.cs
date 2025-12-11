@@ -18,35 +18,22 @@ public class DialogManager : ManagerBase {
 
     protected override void OnGameLoaded(LoadContext context) {
         base.OnGameLoaded(context);
-        ShowLogMessageBox();
+        ShowLogDialog();
     }
 
-    private void ShowLogMessageBox() {
+    private void ShowLogDialog() {
         var defaultSetting = _settingManager.GetDefaultSetting();
-
-        var lastVersion = defaultSetting.ModVersion;
-        var modVersion = _modManager.ModVersion;
+        var lastVersion = defaultSetting.CurrentModVersion;
+        var modVersion = ModVersion.FromVersion(_modManager.ModVersion);
         var versionType = _modManager.CurrentBuildChannel;
 
-        var isNonRelease = versionType != BuildChannel.Stable && versionType != BuildChannel.Beta;
-        var isSameVersion = lastVersion.Major == modVersion.Major &&
-                            lastVersion.Minor == modVersion.Minor &&
-                            lastVersion.Build == modVersion.Build;
-
-        if (isNonRelease || isSameVersion) {
-            UpdateModVersion();
-            return;
-        }
-
-        if (lastVersion < modVersion) Show<ChangelogDialog>().Init();
-
-        defaultSetting.ModVersion = modVersion;
+        defaultSetting.CurrentModVersion = modVersion;
         _settingManager.SaveDefaultSetting();
-        return;
 
-        void UpdateModVersion() {
-            defaultSetting.ModVersion = modVersion;
-            _settingManager.SaveDefaultSetting();
+        if (versionType != BuildChannel.Alpha && versionType != BuildChannel.Beta) {
+            if (modVersion.CompareWithoutRevision(lastVersion) > 0) {
+                Show<ChangelogDialog>().Init();
+            }
         }
     }
 

@@ -91,6 +91,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Manager\UpdateManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Manager\UpdatePhase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModVersion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serialization\IReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serialization\ISerializable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Serialization\IWriter.cs" />
