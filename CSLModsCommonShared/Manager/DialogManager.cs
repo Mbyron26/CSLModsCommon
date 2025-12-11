@@ -27,14 +27,14 @@ public class DialogManager : ManagerBase {
         var modVersion = ModVersion.FromVersion(_modManager.ModVersion);
         var versionType = _modManager.CurrentBuildChannel;
 
-        defaultSetting.CurrentModVersion = modVersion;
-        _settingManager.SaveDefaultSetting();
-
         if (versionType != BuildChannel.Alpha && versionType != BuildChannel.Beta) {
             if (modVersion.CompareWithoutRevision(lastVersion) > 0) {
                 Show<ChangelogDialog>().Init();
             }
         }
+
+        defaultSetting.CurrentModVersion = modVersion;
+        _settingManager.SaveDefaultSetting();
     }
 
     public void Hide(DialogBase dialog) {
