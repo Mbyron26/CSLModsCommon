@@ -11,7 +11,8 @@ using CSLModsCommon.UI.SettingsCard;
 using System;
 using UnityEngine;
 
-namespace CSLModsCommon.UI.ControlPanel; 
+namespace CSLModsCommon.UI.ControlPanel;
+
 public partial class ControlPanelBase {
     public sealed class SettingsSection : SettingsCardBase<LiteContainer> {
         public ReusableList<ISettingsCard> ItemCards { get; private set; }
@@ -130,6 +131,12 @@ public partial class ControlPanelBase {
         public NormalButtonCard AddButton(string header, string description, string buttonText, float? buttonWidth, float buttonHeight = 24, UIElementEventHandler<NormalButton> onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) {
             var panel = AddItemCard<NormalButtonCard, NormalButton>(header, description);
             var button = panel.Control;
+            SetButtonSettings(button, buttonText, buttonWidth, buttonHeight, onButtonClicked);
+            beforeLayoutAction?.Invoke(panel);
+            return panel;
+        }
+
+        public static NormalButton SetButtonSettings(NormalButton button, string buttonText, float? buttonWidth = null, float buttonHeight = 24, UIElementEventHandler<NormalButton> onButtonClicked = null) {
             button.autoSize = false;
             button.TextScale = 0.8f;
             button.height = buttonHeight;
@@ -141,8 +148,7 @@ public partial class ControlPanelBase {
             else
                 button.AutoWidth = true;
             button.eventClicked += (c, _) => onButtonClicked?.Invoke(c as NormalButton);
-            beforeLayoutAction?.Invoke(panel);
-            return panel;
+            return button;
         }
 
         public SliderCard AddSlider(string header, string description, float minValue, float maxValue, float stepValue, float defaultValue, Vector2 sliderSize, Action<float> callback = null, bool gradientStyle = false, Action<SliderCard> beforeLayoutAction = null) {
@@ -188,29 +194,45 @@ public partial class ControlPanelBase {
             where TValueFieldControl : ValueFieldBase<TValue, TValueFieldControl>
             where TValue : IComparable<TValue> {
             var card = AddItemCard<TValueFieldCard, TValueFieldControl>(header, description);
-            card.Control.builtinKeyNavigation = true;
-            card.Control.TextPadding.SetTop(6);
-            card.Control.size = new Vector2(fieldWidth, fieldHeight);
-            card.Control.MinValue = minLimit;
-            card.Control.MaxValue = maxLimit;
-            card.Control.WheelStep = wheelStep;
-            card.Control.CanWheel = true;
-            card.Control.ShowTooltip = true;
-            card.Control.SelectOnFocus = true;
-            card.Control.CursorHeight = 14;
-            card.Control.CustomCursorHeight = true;
-            card.Control.UseValueLimit = true;
-            if (typeof(TValue) == typeof(string)) {
-                card.Control.UseValueLimit = false;
-                card.Control.builtinKeyNavigation = false;
-            }
-
-            card.Control.TextScale = 0.8f;
-            card.Control.Value = defaultValue;
-            card.Control.EventValueChanged += (_, v) => callback?.Invoke(v);
-            card.Control.SetStyle(StyleType.ControlPanelStyle);
+            SetValueFieldSettings(card.Control, defaultValue, minLimit, maxLimit, wheelStep, callback, fieldWidth, fieldHeight);
             beforeLayoutAction?.Invoke(card);
             return card;
+        }
+
+        public static TValueFieldControl SetValueFieldSettings<TValueFieldControl, TValue>(
+            TValueFieldControl control,
+            TValue defaultValue,
+            TValue minLimit,
+            TValue maxLimit,
+            TValue wheelStep,
+            Action<TValue> callback = null,
+            float fieldWidth = 100,
+            float fieldHeight = 24
+        )
+            where TValueFieldControl : ValueFieldBase<TValue, TValueFieldControl>
+            where TValue : IComparable<TValue> {
+            control.builtinKeyNavigation = true;
+            control.TextPadding.SetTop(6);
+            control.size = new Vector2(fieldWidth, fieldHeight);
+            control.MinValue = minLimit;
+            control.MaxValue = maxLimit;
+            control.WheelStep = wheelStep;
+            control.CanWheel = true;
+            control.ShowTooltip = true;
+            control.SelectOnFocus = true;
+            control.CursorHeight = 14;
+            control.CustomCursorHeight = true;
+            control.UseValueLimit = true;
+            if (typeof(TValue) == typeof(string)) {
+                control.UseValueLimit = false;
+                control.builtinKeyNavigation = false;
+            }
+
+            control.TextScale = 0.8f;
+            control.Value = defaultValue;
+            control.EventValueChanged += (_, v) => callback?.Invoke(v);
+            control.SetStyle(StyleType.ControlPanelStyle);
+            return control;
         }
 
         public DropDownCard AddDropDown<T>(

@@ -5,6 +5,7 @@ using ColossalFramework.UI;
 using CSLModsCommon.KeyBindings;
 using CSLModsCommon.Localization;
 using CSLModsCommon.UI.Atlas;
+using ICities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace CSLModsCommon.UI; 
+namespace CSLModsCommon.UI;
+
 public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T> where V : ValueFieldBase<T, V> {
     protected bool _renderBg = true;
     private bool _hasImeInput;
@@ -237,8 +239,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
             _bgColors.SetValues(UIColors.BgElementColors);
             _bgColors.FocusedColor = UIColors.GreenNormal;
             _selectionSprite = SharedAtlasKeys.Rectangle;
-        }
-        else if (style == StyleType.OptionPanelStyle) {
+        } else if (style == StyleType.OptionPanelStyle) {
             _bgSprites.SetValues(SharedAtlasKeys.RoundRect8);
             _bgColors.SetValues(UIColors.Bg1ElementColors);
             _bgColors.FocusedColor = UIColors.BlueNormal;
@@ -310,8 +311,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                 newValue = (T)(object)_text;
             else if (!string.IsNullOrEmpty(_text))
                 newValue = (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(_text);
-        }
-        catch { }
+        } catch { }
 
         OnValueChanged(newValue);
         InvokeUpward("OnTextSubmitted", Text);
@@ -389,8 +389,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                         OnCancel();
                         goto IL_45E;
                     }
-                }
-                else {
+                } else {
                     if (Multiline) {
                         AddLineBreak();
                         goto IL_45E;
@@ -399,8 +398,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                     OnSubmit();
                     goto IL_45E;
                 }
-            }
-            else {
+            } else {
                 if (p.control) {
                     if (builtinKeyNavigation)
                         DeletePreviousWord();
@@ -411,8 +409,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                     DeletePreviousChar();
                 goto IL_45E;
             }
-        }
-        else if (keycode <= KeyCode.Z) {
+        } else if (keycode <= KeyCode.Z) {
             switch (keycode) {
                 case KeyCode.A:
                     if (p.control) SelectAll();
@@ -446,8 +443,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                                     ClearSelection();
                                     Text = _undoData[_undoData.Count - _undoCount - 1]._text;
                                     _cursorIndex = _undoData[_undoData.Count - _undoCount - 1]._position;
-                                }
-                                catch {
+                                } catch {
                                     _undoCount++;
                                 }
 
@@ -463,8 +459,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                                     ClearSelection();
                                     Text = _undoData[_undoData.Count - _undoCount - 1]._text;
                                     _cursorIndex = _undoData[_undoData.Count - _undoCount - 1]._position;
-                                }
-                                catch {
+                                } catch {
                                     _undoCount--;
                                 }
 
@@ -476,8 +471,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
 
                     break;
             }
-        }
-        else if (keycode != KeyCode.Delete) {
+        } else if (keycode != KeyCode.Delete) {
             switch (keycode) {
                 case KeyCode.UpArrow:
                     if (!Multiline) goto IL_45E;
@@ -508,8 +502,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
 
                         MoveToNextWord();
                         goto IL_45E;
-                    }
-                    else {
+                    } else {
                         if (p.shift) {
                             MoveSelectionPointRight();
                             goto IL_45E;
@@ -532,8 +525,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
 
                         MoveToPreviousWord();
                         goto IL_45E;
-                    }
-                    else {
+                    } else {
                         if (p.shift) {
                             MoveSelectionPointLeft();
                             goto IL_45E;
@@ -572,8 +564,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                     MoveToEnd();
                     goto IL_45E;
             }
-        }
-        else {
+        } else {
             if (_selectionStart != _selectionEnd) {
                 DeleteSelection();
                 goto IL_45E;
@@ -741,8 +732,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (Multiline) {
             var lineByVerticalPosition = GetLineByVerticalPosition(hitPosition.y);
             num2 = GetIndexByHorizontalPosition(hitPosition.x, lineByVerticalPosition);
-        }
-        else {
+        } else {
             num2 = _scrollIndex;
             var num3 = _leftOffset / num + TextPadding.Left;
             for (var i = _scrollIndex; i < _charWidths.Length; i++) {
@@ -868,11 +858,9 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_selectionEnd == _selectionStart) {
             _selectionStart = _cursorIndex;
             _selectionEnd = num;
-        }
-        else if (_selectionEnd == _cursorIndex) {
+        } else if (_selectionEnd == _cursorIndex) {
             _selectionEnd = num;
-        }
-        else if (_selectionStart == _cursorIndex) {
+        } else if (_selectionStart == _cursorIndex) {
             _selectionStart = num;
         }
 
@@ -886,11 +874,9 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_selectionEnd == _selectionStart) {
             _selectionEnd = _cursorIndex;
             _selectionStart = num;
-        }
-        else if (_selectionEnd == _cursorIndex) {
+        } else if (_selectionEnd == _cursorIndex) {
             _selectionEnd = num;
-        }
-        else if (_selectionStart == _cursorIndex) {
+        } else if (_selectionStart == _cursorIndex) {
             _selectionStart = num;
         }
 
@@ -903,11 +889,9 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_selectionEnd == _selectionStart) {
             _selectionEnd = _cursorIndex + 1;
             _selectionStart = _cursorIndex;
-        }
-        else if (_selectionEnd == _cursorIndex) {
+        } else if (_selectionEnd == _cursorIndex) {
             _selectionEnd++;
-        }
-        else if (_selectionStart == _cursorIndex) {
+        } else if (_selectionStart == _cursorIndex) {
             _selectionStart++;
         }
 
@@ -920,11 +904,9 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_selectionEnd == _selectionStart) {
             _selectionEnd = _cursorIndex;
             _selectionStart = _cursorIndex - 1;
-        }
-        else if (_selectionEnd == _cursorIndex) {
+        } else if (_selectionEnd == _cursorIndex) {
             _selectionEnd--;
-        }
-        else if (_selectionStart == _cursorIndex) {
+        } else if (_selectionStart == _cursorIndex) {
             _selectionStart--;
         }
 
@@ -979,8 +961,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
             _selectionStart = index;
             _selectionEnd = index + 1;
             _mouseSelectionAnchor = 0;
-        }
-        else {
+        } else {
             _selectionStart = index;
             var num = index;
             while (num > 0 && char.IsLetterOrDigit(_text[num - 1])) {
@@ -1106,7 +1087,9 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
 
     public override void Update() {
         base.Update();
-        if (!string.IsNullOrEmpty(Input.compositionString)) Invalidate();
+        if (!string.IsNullOrEmpty(Input.compositionString))
+            Invalidate();
+        CheckForLostFocus();
     }
 
     protected override void OnRebuildRenderData() {
@@ -1127,8 +1110,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_textAtlas is null) return;
         if (_textRenderData != null) {
             _textRenderData.Clear();
-        }
-        else {
+        } else {
             _textRenderData = UIRenderData.Obtain();
             m_RenderData.Add(_textRenderData);
         }
@@ -1152,8 +1134,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
             _lineScrollIndex = Mathf.Min(_lineScrollIndex, lineByIndex);
             _lineScrollIndex = Mathf.Max(_lineScrollIndex, lineByIndex - (num3 - 1));
             num2 = Mathf.Min(_lineScrollIndex + num3 - 1, _lines.Count - 1);
-        }
-        else {
+        } else {
             _cursorIndex = Mathf.Min(_cursorIndex, text2.Length);
             _scrollIndex = Mathf.Min(Mathf.Min(_scrollIndex, _cursorIndex), text2.Length);
             _lineScrollIndex = 0;
@@ -1167,8 +1148,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
 
                     num4 -= _charWidths[_scrollIndex++];
                 }
-            }
-            else {
+            } else {
                 _scrollIndex = Mathf.Max(0, Mathf.Min(_cursorIndex, text2.Length - 1));
                 var num5 = 0f;
                 var num6 = _font.size * 1.25f * num;
@@ -1216,8 +1196,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
                 var vectorOffset = vector3 + b;
                 uiFontRenderer.vectorOffset = vectorOffset;
                 uiFontRenderer.Render(text3, _textRenderData);
-            }
-            else {
+            } else {
                 vector3.x += _leftOffset;
                 uiFontRenderer.vectorOffset = vector3;
                 uiFontRenderer.Render(text2.Substring(_scrollIndex), _textRenderData);
@@ -1383,8 +1362,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
             if (_text[words[num3]] == '\n') {
                 list.Add(words[num3] + 1);
                 num++;
-            }
-            else if (TextWidth(list[num], num4) >= num2) {
+            } else if (TextWidth(list[num], num4) >= num2) {
                 if (words[num3] != list[num]) {
                     list.Add(words[num3]);
                     num++;
@@ -1416,8 +1394,7 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
 
             if (num2 == _text.Length) {
                 flag = true;
-            }
-            else {
+            } else {
                 list.Add(num2);
                 num = num2;
             }
@@ -1504,15 +1481,12 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_selectionEnd == _selectionStart) {
             _selectionEnd = num;
             _selectionStart = _cursorIndex;
-        }
-        else if (_selectionEnd == _cursorIndex) {
+        } else if (_selectionEnd == _cursorIndex) {
             _selectionEnd = num;
-        }
-        else if (_selectionStart == _cursorIndex) {
+        } else if (_selectionStart == _cursorIndex) {
             if (num <= _selectionEnd) {
                 _selectionStart = num;
-            }
-            else {
+            } else {
                 _selectionStart = _selectionEnd;
                 _selectionEnd = num;
             }
@@ -1526,15 +1500,12 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         if (_selectionEnd == _selectionStart) {
             _selectionStart = num;
             _selectionEnd = _cursorIndex;
-        }
-        else if (_selectionStart == _cursorIndex) {
+        } else if (_selectionStart == _cursorIndex) {
             _selectionStart = num;
-        }
-        else if (_selectionEnd == _cursorIndex) {
+        } else if (_selectionEnd == _cursorIndex) {
             if (num >= _selectionStart) {
                 _selectionEnd = num;
-            }
-            else {
+            } else {
                 _selectionEnd = _selectionStart;
                 _selectionStart = num;
             }
@@ -1621,6 +1592,18 @@ public abstract class ValueFieldBase<T, V> : UITextBase where T : IComparable<T>
         }
 
         base.OnMouseMove(p);
+    }
+
+    private void CheckForLostFocus() {
+        if (!isVisible) return;
+        if (!Input.GetMouseButtonDown(0)) return;
+
+        var camera = GetCamera();
+        var ray = camera.ScreenPointToRay(Input.mousePosition);
+        if (Raycast(ray))
+            return;
+
+        Unfocus();
     }
 
     public class UndoData {
