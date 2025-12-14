@@ -5,7 +5,7 @@ namespace CSLModsCommon.Manager;
 public abstract class ManagerBase : ComponentManagerBase {
     public GameMode CurrentMode {
         get {
-            if (GameLoading is null)
+            if (GameLoading is null || !GameLoaded)
                 return GameMode.MainMenu;
             return GameLoading.currentMode switch {
                 AppMode.Game => GameMode.Game,
@@ -19,6 +19,7 @@ public abstract class ManagerBase : ComponentManagerBase {
     }
 
     protected ILoading GameLoading { get; private set; }
+    protected bool GameLoaded { get; private set;  }
 
     protected virtual void OnGameInitialized() { }
     protected virtual void OnGamePreLoad() { }
@@ -57,9 +58,12 @@ public abstract class ManagerBase : ComponentManagerBase {
                 AppMode.MapEditor => GameMode.MapEditor,
                 _ => GameMode.MainMenu
             };
-
+        GameLoaded = true;
         OnGameLoaded(new LoadContext(mode, gameMode));
     }
 
-    private void NotifyGameUnload() => OnGameUnloaded();
+    private void NotifyGameUnload() {
+        GameLoaded = false;
+        OnGameUnloaded();
+    }
 }
