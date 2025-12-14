@@ -21,9 +21,9 @@ public class KeyBindingManager : ManagerBase {
         OnBindingsChanged();
     }
 
-    public void Register(string name, KeyBinding binding, Action action, KeyBindingContext context = KeyBindingContext.Global, bool overwrite = false) {
+    public bool Register(string name, KeyBinding binding, Action action, KeyBindingContext context = KeyBindingContext.Global, bool overwrite = false) {
         if (!overwrite && _entries.Any(e => e.Name == name))
-            throw new InvalidOperationException($"KeyBinding '{name}' already exists.");
+            return false;
 
         _entries.RemoveAll(e => e.Name == name);
         _entries.Add(new KeyBindingEntry(name, binding, action, context));
@@ -31,6 +31,7 @@ public class KeyBindingManager : ManagerBase {
         EnsureDispatcherExists();
         OnBindingsChanged();
         Logger.Debug($"KeyBinding '{name}' registered with binding '{binding}' in context '{context}'");
+        return true;
     }
 
     public void Unregister(string name) {
