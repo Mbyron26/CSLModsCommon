@@ -12,7 +12,8 @@ using CSLModsCommon.UI.Sliders;
 using System;
 using UnityEngine;
 
-namespace CSLModsCommon.UI.OptionsPanel; 
+namespace CSLModsCommon.UI.OptionsPanel;
+
 public abstract partial class OptionsPanelBase {
     public sealed class SettingsSection : SettingsCardBase<LiteContainer> {
         public ReusableList<ISettingsCard> ItemCards { get; private set; }
@@ -80,6 +81,37 @@ public abstract partial class OptionsPanelBase {
             checkBox.Text = checkBoxText;
             checkBox.CheckChanged += callback;
             beforeLayoutAction?.Invoke(card);
+            return card;
+        }
+
+        public RadioGroupCard AddEnumRadioGroup<TEnum>(
+            string header,
+            string description,
+            TEnum currentValue,
+            Action<TEnum> onChanged,
+            Func<TEnum, string> getDisplayName = null
+        ) where TEnum : Enum {
+            var card = AddItemCard<RadioGroupCard, RadioGroup>(header, description, FlexDirection.Column);
+            var group = card.Control;
+            group.RowGap = 6;
+            group.width = card.width - card.LayoutPadding.Horizontal;
+
+            var values = Enum.GetValues(typeof(TEnum));
+            var count = values.Length;
+            var items = new RadioButtonItem<TEnum>[count];
+
+            for (var i = 0; i < count; i++) {
+                var value = (TEnum)values.GetValue(i)!;
+                var displayName = getDisplayName != null ? getDisplayName(value) : value.ToString();
+                items[i] = new RadioButtonItem<TEnum>(value, group.AddOption(displayName));
+            }
+
+            var logic = RadioGroupLogic<TEnum>.Create();
+            logic.AddRange(items);
+            logic.SetDefault(v => v.Value.Equals(currentValue));
+            logic.SelectionChanged += v => onChanged?.Invoke(v.Value);
+            foreach (var button in group.Buttons) 
+                button?.TextElement?.TextPadding.SetTop(1);
             return card;
         }
 
