@@ -11,5 +11,6 @@ public enum KeyBindingContext {
     AssetEditor = 1 << 3,
     ThemeEditor = 1 << 4,
     ScenarioEditor = 1 << 5,
-    Global = MainMenu | Game | MapEditor | AssetEditor | ThemeEditor | ScenarioEditor
+    InGame = Game | MapEditor | AssetEditor | ThemeEditor | ScenarioEditor,
+    Global = MainMenu | InGame
 }
