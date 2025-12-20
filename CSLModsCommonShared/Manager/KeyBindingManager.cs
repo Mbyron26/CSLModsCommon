@@ -9,11 +9,13 @@ using UnityEngine;
 using KeyBinding = CSLModsCommon.KeyBindings.KeyBinding;
 using Object = UnityEngine.Object;
 
-namespace CSLModsCommon.Manager; 
+namespace CSLModsCommon.Manager;
+
 public class KeyBindingManager : ManagerBase {
-    public event Action<List<KeyBindingEntry>> BindingsChanged;
+    internal event Action<List<KeyBindingEntry>> BindingsChanged;
 
     private readonly List<KeyBindingEntry> _entries = new();
+    private readonly List<KeyBindingEntry> _activeBuilder = new();
     private KeyBindingDispatcher _dispatcher;
 
     protected override void OnGameLoaded(LoadContext context) {
@@ -42,17 +44,15 @@ public class KeyBindingManager : ManagerBase {
     }
 
     public List<KeyBindingEntry> GetActiveBindings() {
-        var result = new List<KeyBindingEntry>();
-        switch (CurrentMode) {
-            case GameMode.MainMenu:
-                result.AddRange(_entries.Where(e => e.Context is KeyBindingContext.MainMenu or KeyBindingContext.Global));
-                break;
-            case GameMode.Game:
-                result.AddRange(_entries.Where(e => e.Context is KeyBindingContext.InGame or KeyBindingContext.Global));
-                break;
+        _activeBuilder.Clear();
+        var current = CurrentContext;
+
+        foreach (var e in _entries) {
+            if ((e.Context & current) != 0)
+                _activeBuilder.Add(e);
         }
 
-        return result;
+        return _activeBuilder;
     }
 
     public bool HasConflict(KeyBinding binding, KeyBindingContext context) => _entries.Any(e => e.Binding.ConflictWith(binding) && e.Context == context);
@@ -98,4 +98,14 @@ public class KeyBindingManager : ManagerBase {
     }
 
     private void OnBindingsChanged() => BindingsChanged?.Invoke(GetActiveBindings());
+
+    private KeyBindingContext CurrentContext => CurrentMode switch {
+        GameMode.MainMenu => KeyBindingContext.MainMenu,
+        GameMode.Game => KeyBindingContext.Game,
+        GameMode.MapEditor => KeyBindingContext.MapEditor,
+        GameMode.AssetEditor => KeyBindingContext.AssetEditor,
+        GameMode.ThemeEditor => KeyBindingContext.ThemeEditor,
+        GameMode.ScenarioEditor => KeyBindingContext.ScenarioEditor,
+        _ => KeyBindingContext.None
+    };
 }

@@ -12,6 +12,7 @@ public class KeyBindingDispatcher : MonoBehaviour {
 
     private void Update() {
         if (!Running) return;
+        if (!Input.anyKeyDown) return;
         for (var i = 0; i < _activeBindings.Count; i++) {
             var entry = _activeBindings[i];
             if (entry.Binding.IsPressed()) entry.Action?.Invoke();
