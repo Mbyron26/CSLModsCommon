@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Compatibility\VersionModRule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CoroutineRunner.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extension\ArrayExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)extension\AttributeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extension\CapturedStackException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extension\CoreLoadingExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extension\CoreSerializableDataExtension.cs" />
