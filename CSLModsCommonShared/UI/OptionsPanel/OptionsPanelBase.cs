@@ -17,7 +17,8 @@ using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 
-namespace CSLModsCommon.UI.OptionsPanel; 
+namespace CSLModsCommon.UI.OptionsPanel;
+
 public abstract partial class OptionsPanelBase : LiteContainer {
     protected const string General = nameof(General);
     protected const string KeyBinding = nameof(KeyBinding);
@@ -43,14 +44,14 @@ public abstract partial class OptionsPanelBase : LiteContainer {
     private CompatibilityManager _compatabilityManager;
 
     static OptionsPanelBase() => LogLevelDropDownItem = new[] {
-            new DropDownItem<LogLevel>(LogLevel.Verbose, nameof(LogLevel.Verbose), true),
-            new DropDownItem<LogLevel>(LogLevel.Debug, nameof(LogLevel.Debug), true),
-            new DropDownItem<LogLevel>(LogLevel.Info, nameof(LogLevel.Info), true),
-            new DropDownItem<LogLevel>(LogLevel.Warn, nameof(LogLevel.Warn), true),
-            new DropDownItem<LogLevel>(LogLevel.Error, nameof(LogLevel.Error), true),
-            new DropDownItem<LogLevel>(LogLevel.Fatal, nameof(LogLevel.Fatal), true),
-            new DropDownItem<LogLevel>(LogLevel.Disabled, nameof(LogLevel.Disabled), true)
-        };
+        new DropDownItem<LogLevel>(LogLevel.Verbose, nameof(LogLevel.Verbose), true),
+        new DropDownItem<LogLevel>(LogLevel.Debug, nameof(LogLevel.Debug), true),
+        new DropDownItem<LogLevel>(LogLevel.Info, nameof(LogLevel.Info), true),
+        new DropDownItem<LogLevel>(LogLevel.Warn, nameof(LogLevel.Warn), true),
+        new DropDownItem<LogLevel>(LogLevel.Error, nameof(LogLevel.Error), true),
+        new DropDownItem<LogLevel>(LogLevel.Fatal, nameof(LogLevel.Fatal), true),
+        new DropDownItem<LogLevel>(LogLevel.Disabled, nameof(LogLevel.Disabled), true)
+    };
 
     protected virtual void CacheManagers() { }
     protected virtual void FillGeneralPage(ScrollContainer page) { }
@@ -162,7 +163,7 @@ public abstract partial class OptionsPanelBase : LiteContainer {
         var section = AddSection(_debugPage, Debug);
 
         section.AddButton("Open settings directory", null, "Open settings directory", null, 30, OpenSettingsDirectory);
-        section.AddButton("Open global setting file", null, "Open global setting file", null, 30, OpenGlobalSettingFile);
+        section.AddButton("Open mod setting file", null, "Open mod setting file", null, 30, OpenModSettingFile);
         section.AddButton("Open logs directory", null, "Open logs directory", null, 30, OpenLogsDirectory);
         section.AddButton("Open log", null, "Open log", null, 30, OpenLogFile);
         section.AddButton("Open game log", null, "Open game log", null, 30, OpenGameLogFile);
@@ -260,14 +261,19 @@ public abstract partial class OptionsPanelBase : LiteContainer {
         Process.Start("explorer.exe", $"/select,\"{filePath}\"");
     }
 
-    private void OpenGlobalSettingFile(NormalButton _) {
-        if (!File.Exists(ModSettingBase.DefaultFilePath)) {
-            _logger.Error("Couldn't find global setting file");
+    private void OpenModSettingFile(NormalButton _) {
+        var attr = ModSettingBase.GetType().GetCustomAttribute<FileLocationAttribute>();
+        if (attr == null) return;
+
+        var path = attr.Path;
+
+        if (!File.Exists(path)) {
+            _logger.Error("Couldn't find mod setting file");
             return;
         }
 
         Process.Start(new ProcessStartInfo {
-            FileName = ModSettingBase.DefaultFilePath,
+            FileName = path,
             UseShellExecute = true
         });
     }
