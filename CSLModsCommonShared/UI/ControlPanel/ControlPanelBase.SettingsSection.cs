@@ -1,4 +1,5 @@
-﻿using ColossalFramework.UI;
+﻿using System;
+using ColossalFramework.UI;
 using CSLModsCommon.Collections;
 using CSLModsCommon.Extension;
 using CSLModsCommon.UI.Atlas;
@@ -8,7 +9,7 @@ using CSLModsCommon.UI.Containers;
 using CSLModsCommon.UI.DropDown;
 using CSLModsCommon.UI.Labels;
 using CSLModsCommon.UI.SettingsCard;
-using System;
+using CSLModsCommon.UI.Sliders;
 using UnityEngine;
 
 namespace CSLModsCommon.UI.ControlPanel;
@@ -128,6 +129,29 @@ public partial class ControlPanelBase {
             return card;
         }
 
+        public NormalButtonsCard AddButtons(
+            string header,
+            string description,
+            Action<INormalButtonsCard> resisterButtons = null,
+            Action<NormalButtonsCard> beforeLayoutAction = null) {
+            var card = AddItemCard<NormalButtonsCard, LiteContainer>(header, description);
+            var container = card.Control;
+            container.ColumnGap = 6;
+            resisterButtons?.Invoke(card);
+
+            foreach (var button in card.Buttons.Values) {
+                button.autoSize = false;
+                button.TextScale = 0.8f;
+                button.height = 24;
+                button.TextPadding.SetAll(10, 10, 4, 0);
+                button.SetStyle(StyleType.ControlPanelStyle);
+                button.AutoWidth = true;
+            }
+            
+            beforeLayoutAction?.Invoke(card);
+            return card;
+        }
+
         public NormalButtonCard AddButton(string header, string description, string buttonText, float? buttonWidth, float buttonHeight = 24, UIElementEventHandler<NormalButton> onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) {
             var panel = AddItemCard<NormalButtonCard, NormalButton>(header, description);
             var button = panel.Control;
@@ -152,7 +176,7 @@ public partial class ControlPanelBase {
         }
 
         public SliderCard AddSlider(string header, string description, float minValue, float maxValue, float stepValue, float defaultValue, Vector2 sliderSize, Action<float> callback = null, bool gradientStyle = false, Action<SliderCard> beforeLayoutAction = null) {
-            var card = AddItemCard<SliderCard, Sliders.Slider>(header, description, FlexDirection.Column);
+            var card = AddItemCard<SliderCard, Slider>(header, description, FlexDirection.Column);
             var slider = card.Control;
             slider.size = sliderSize;
             slider.MinValue = minValue;

@@ -202,12 +202,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\EmptyContainerCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\EmptyLiteContainerCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\FloatFieldCard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\INormalButtonsCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\IntFieldCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\ISettingsCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\KeyBindingCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\LabelCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\LongFieldCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\NormalButtonCard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\NormalButtonsCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\RadioGroupCard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\SettingsCardBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\SettingsCard\SliderCard.cs" />
