@@ -2,10 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.1] - 2025-12-20
+## [1.0.1] - 2025-12-28
 - Fixed an issue where changelog dialog show up every time.
 - Avoid throwing exception when registering duplicate key bindings, return false instead.
 - Refactored key binding framework to use flag-based context filtering.
+- Adjust OptionsPanelBase settings file access.
+- Added AttributeExtensions extension methods
 
 ## [1.0.0] - 2025-12-07
 - Added mod translation button, mod page button, get help button, log level setter to option panel advanced page.
