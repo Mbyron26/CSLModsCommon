@@ -105,6 +105,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Setting\ISetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Setting\ModSettingBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Setting\SettingSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple5.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple6.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple7.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Threading\AggregateException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Threading\PlatformHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Threading\SpinWait.cs" />
