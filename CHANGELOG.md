@@ -7,7 +7,10 @@ All notable changes to this project will be documented in this file.
 - Avoid throwing exception when registering duplicate key bindings, return false instead.
 - Refactored key binding framework to use flag-based context filtering.
 - Adjust OptionsPanelBase settings file access.
-- Added AttributeExtensions extension methods
+- Added AttributeExtensions extension methods.
+- Add NormalButtonsCard and INormalButtonsCard for buttons management.
+- Add ValueTuple structs.
+- Add Lazy<T> class and LazyThreadSafetyMode enum for lazy initialization
 
 ## [1.0.0] - 2025-12-07
 - Added mod translation button, mod page button, get help button, log level setter to option panel advanced page.
