@@ -5,8 +5,7 @@ using CSLModsCommon.Manager;
 
 namespace CSLModsCommon.Localization;
 
-public static class SharedTranslations
-{
+public static class SharedTranslations {
     /// <summary>
     /// Advanced
     /// </summary>
@@ -568,3 +567,4 @@ public static class SharedTranslations
     public static string Yes => LocalizationManager.Localize("Yes");
 
 }
+
