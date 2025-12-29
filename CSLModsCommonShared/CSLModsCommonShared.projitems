@@ -106,6 +106,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Setting\ModSettingBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Setting\SettingSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\Lazy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\LazyHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\LazyState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ValueTuple2.cs" />
