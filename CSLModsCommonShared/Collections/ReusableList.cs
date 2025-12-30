@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 namespace CSLModsCommon.Collections;
 
-public class ReusableList<T> : IList<T>, IReusable {
+public class ReusableList<T> : IList<T>, IReusable, IReadOnlyList<T> {
+    public static int MaxPoolSize { get; set; } = 100;
     private static readonly T[] EmptyArray = new T[0];
     private static readonly Stack<ReusableList<T>> Pool = new();
     private static readonly object Lock = new();
+
     private T[] _items;
 
-    public static int MaxPoolSize { get; set; } = 100;
     public bool IsReadOnly => false;
     public bool IsDisposed { get; private set; }
     public int Count { get; private set; }
