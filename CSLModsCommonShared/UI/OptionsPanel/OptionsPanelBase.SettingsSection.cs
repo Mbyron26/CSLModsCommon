@@ -16,14 +16,16 @@ namespace CSLModsCommon.UI.OptionsPanel;
 
 public abstract partial class OptionsPanelBase {
     public sealed class SettingsSection : SettingsCardBase<LiteContainer> {
-        public ReusableList<ISettingsCard> ItemCards { get; private set; }
+        private ReusableList<ISettingsCard> _itemCards;
+        
+        public IReadOnlyList<ISettingsCard> ItemCards => _itemCards;
 
         public override void Awake() {
             base.Awake();
             m_Size = new Vector2(OptionsPanelLayout.SectionWidth, m_Size.y);
             _direction = FlexDirection.Column;
             _textElementGap = _rowGap = 4;
-            ItemCards = ReusableList<ISettingsCard>.Rent();
+            _itemCards = ReusableList<ISettingsCard>.Rent();
             Control = AddUIComponent<LiteContainer>();
             Control.width = width;
             Control.AutoLayout = true;
@@ -35,7 +37,7 @@ public abstract partial class OptionsPanelBase {
 
         public override void OnDestroy() {
             base.OnDestroy();
-            ItemCards.Return();
+            _itemCards.Return();
         }
 
         protected override void AddHeaderElement() {
@@ -381,7 +383,7 @@ public abstract partial class OptionsPanelBase {
             card.FgColors.SetValues(UIColors.GroupFg1);
             card.RenderFg = true;
             card.LayoutPadding.SetAll(16, 16, 14, 14);
-            ItemCards.Add(card);
+            _itemCards.Add(card);
             RenderItemPanelFg();
             if (string.IsNullOrEmpty(header)) return card;
             card.Header = header;
@@ -392,8 +394,8 @@ public abstract partial class OptionsPanelBase {
         }
 
         public void RenderItemPanelFg() {
-            var count = ItemCards.Count;
-            for (var i = 0; i < count; i++) ItemCards[i].RenderFg = i != count - 1;
+            var count = _itemCards.Count;
+            for (var i = 0; i < count; i++) _itemCards[i].RenderFg = i != count - 1;
         }
     }
 }
