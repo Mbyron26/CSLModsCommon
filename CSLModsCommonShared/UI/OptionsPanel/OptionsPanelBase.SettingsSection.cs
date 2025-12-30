@@ -169,6 +169,29 @@ public abstract partial class OptionsPanelBase {
             beforeLayoutAction?.Invoke(card);
             return card;
         }
+        
+        public NormalButtonsCard AddButtons(
+            string header,
+            string description,
+            Action<INormalButtonsCard> resisterButtons = null,
+            Action<NormalButtonsCard> beforeLayoutAction = null) {
+            var card = AddItemCard<NormalButtonsCard, LiteContainer>(header, description);
+            var container = card.Control;
+            container.ColumnGap = 8;
+            resisterButtons?.Invoke(card);
+
+            foreach (var button in card.Buttons.Values) {
+                button.autoSize = false;
+                button.TextScale = 0.9f;
+                button.height = 30;
+                button.TextPadding.SetAll(10, 10, 4, 0);
+                button.SetStyle(StyleType.OptionPanelStyle);
+                button.AutoWidth = true;
+            }
+
+            beforeLayoutAction?.Invoke(card);
+            return card;
+        }
 
         public NormalButtonCard AddButton(string header, string description, string buttonText, UIElementEventHandler onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) => AddButton(header, description, buttonText, null, 30, _ => onButtonClicked?.Invoke(), beforeLayoutAction);
 
