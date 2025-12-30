@@ -110,7 +110,7 @@ public abstract partial class OptionsPanelBase {
             logic.AddRange(items);
             logic.SetDefault(v => v.Value.Equals(currentValue));
             logic.SelectionChanged += v => onChanged?.Invoke(v.Value);
-            foreach (var button in group.Buttons) 
+            foreach (var button in group.Buttons)
                 button?.TextElement?.TextPadding.SetTop(1);
             return card;
         }
@@ -348,6 +348,8 @@ public abstract partial class OptionsPanelBase {
             beforeLayoutAction?.Invoke(card);
             return card;
         }
+
+        public ToggleSwitchCard AddToggleSwitch(bool isOn, string header, string description, UIElementEventHandler<bool> callback, Action<ToggleSwitchCard> beforeLayoutAction = null) => AddToggleSwitch(isOn, header, description, (_, v) => callback?.Invoke(v), beforeLayoutAction);
 
         public ToggleSwitchCard AddToggleSwitch(bool isOn, string header, string description, UIElementEventHandler<ToggleSwitchIndicator, bool> callback, Action<ToggleSwitchCard> beforeLayoutAction = null) {
             var card = AddItemCard<ToggleSwitchCard, ToggleSwitchIndicator>(header, description);
