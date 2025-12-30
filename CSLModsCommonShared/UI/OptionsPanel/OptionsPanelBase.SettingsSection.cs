@@ -71,6 +71,8 @@ public abstract partial class OptionsPanelBase {
             return card;
         }
 
+        public CheckBoxCard AddCheckBox(bool isChecked, string checkBoxText, string header = null, string description = null, UIElementEventHandler<bool> callback = null, Action<CheckBoxCard> beforeLayoutAction = null) => AddCheckBox(isChecked, checkBoxText, header, description, (_, b) => callback?.Invoke(b), beforeLayoutAction);
+
         public CheckBoxCard AddCheckBox(bool isChecked, string checkBoxText, string header = null, string description = null, UIElementEventHandler<CheckBox, bool> callback = null, Action<CheckBoxCard> beforeLayoutAction = null) {
             var card = AddItemCard<CheckBoxCard, CheckBox>(header, description);
             var checkBox = card.Control;
