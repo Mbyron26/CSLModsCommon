@@ -166,6 +166,8 @@ public abstract partial class OptionsPanelBase {
             return card;
         }
 
+        public NormalButtonCard AddButton(string header, string description, string buttonText, UIElementEventHandler onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) => AddButton(header, description, buttonText, null, 30, _ => onButtonClicked?.Invoke(), beforeLayoutAction);
+
         public NormalButtonCard AddButton(string header, string description, string buttonText, float? buttonWidth, float buttonHeight = 30, UIElementEventHandler<NormalButton> onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) {
             var panel = AddItemCard<NormalButtonCard, NormalButton>(header, description);
             var button = panel.Control;
