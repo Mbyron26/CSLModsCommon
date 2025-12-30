@@ -16,14 +16,16 @@ namespace CSLModsCommon.UI.ControlPanel;
 
 public partial class ControlPanelBase {
     public sealed class SettingsSection : SettingsCardBase<LiteContainer> {
-        public ReusableList<ISettingsCard> ItemCards { get; private set; }
+        private ReusableList<ISettingsCard> _itemCards;
+
+        public IReadOnlyList<ISettingsCard> ItemCards => _itemCards;
 
         public override void Awake() {
             base.Awake();
             m_Size = new Vector2(100, 10);
             _direction = FlexDirection.Column;
             _textElementGap = _rowGap = 4;
-            ItemCards = ReusableList<ISettingsCard>.Rent();
+            _itemCards = ReusableList<ISettingsCard>.Rent();
             Control = AddUIComponent<LiteContainer>();
             Control.width = width;
             Control.AutoLayout = true;
@@ -35,7 +37,7 @@ public partial class ControlPanelBase {
 
         public override void OnDestroy() {
             base.OnDestroy();
-            ItemCards.Return();
+            _itemCards.Return();
         }
 
         protected override void AddHeaderElement() {
@@ -69,6 +71,8 @@ public partial class ControlPanelBase {
             beforeLayoutAction?.Invoke(card);
             return card;
         }
+
+        public CheckBoxCard AddCheckBox(bool isChecked, string checkBoxText, string header = null, string description = null, UIElementEventHandler<bool> callback = null, Action<CheckBoxCard> beforeLayoutAction = null) => AddCheckBox(isChecked, checkBoxText, header, description, (_, b) => callback?.Invoke(b), beforeLayoutAction);
 
         public CheckBoxCard AddCheckBox(bool isChecked, string checkBoxText, string header = null, string description = null, UIElementEventHandler<CheckBox, bool> callback = null, Action<CheckBoxCard> beforeLayoutAction = null) {
             var card = AddItemCard<CheckBoxCard, CheckBox>(header, description);
@@ -147,10 +151,12 @@ public partial class ControlPanelBase {
                 button.SetStyle(StyleType.ControlPanelStyle);
                 button.AutoWidth = true;
             }
-            
+
             beforeLayoutAction?.Invoke(card);
             return card;
         }
+
+        public NormalButtonCard AddButton(string header, string description, string buttonText, UIElementEventHandler onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) => AddButton(header, description, buttonText, null, 30, _ => onButtonClicked?.Invoke(), beforeLayoutAction);
 
         public NormalButtonCard AddButton(string header, string description, string buttonText, float? buttonWidth, float buttonHeight = 24, UIElementEventHandler<NormalButton> onButtonClicked = null, Action<NormalButtonCard> beforeLayoutAction = null) {
             var panel = AddItemCard<NormalButtonCard, NormalButton>(header, description);
@@ -367,6 +373,8 @@ public partial class ControlPanelBase {
             return card;
         }
 
+        public ToggleSwitchCard AddToggleSwitch(bool isOn, string header, string description, UIElementEventHandler<bool> callback, Action<ToggleSwitchCard> beforeLayoutAction = null) => AddToggleSwitch(isOn, header, description, (_, v) => callback?.Invoke(v), beforeLayoutAction);
+
         public ToggleSwitchCard AddToggleSwitch(bool isOn, string header, string description, UIElementEventHandler<ToggleSwitchIndicator, bool> callback, Action<ToggleSwitchCard> beforeLayoutAction = null) {
             var card = AddItemCard<ToggleSwitchCard, ToggleSwitchIndicator>(header, description);
             var button = card.Control;
@@ -380,9 +388,9 @@ public partial class ControlPanelBase {
         }
 
         public void RemoveAllItemPanel() {
-            foreach (var panel in ItemCards) panel.Self.DestroySelf();
+            foreach (var panel in _itemCards) panel.Self.DestroySelf();
 
-            ItemCards.Clear();
+            _itemCards.Clear();
         }
 
         public TCard AddItemCard<TCard, TControl>(string header = null, string description = null, FlexDirection direction = FlexDirection.Row) where TCard : SettingsCardBase<TControl> where TControl : UIComponent {
@@ -399,7 +407,7 @@ public partial class ControlPanelBase {
             card.FgColors.SetValues(UIColors.GroupFgNormal);
             card.RenderFg = true;
             card.LayoutPadding.SetAll(10);
-            ItemCards.Add(card);
+            _itemCards.Add(card);
             RenderItemPanelFg();
             if (string.IsNullOrEmpty(header)) return card;
             card.Header = header;
@@ -412,8 +420,8 @@ public partial class ControlPanelBase {
         }
 
         private void RenderItemPanelFg() {
-            var count = ItemCards.Count;
-            for (var i = 0; i < count; i++) ItemCards[i].RenderFg = i != count - 1;
+            var count = _itemCards.Count;
+            for (var i = 0; i < count; i++) _itemCards[i].RenderFg = i != count - 1;
         }
     }
 }
