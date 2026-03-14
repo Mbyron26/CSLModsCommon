@@ -1,4 +1,4 @@
-﻿namespace CSLModsCommon.Threading;
+﻿namespace System.Threading;
 
 public enum LazyThreadSafetyMode {
     None = 0,

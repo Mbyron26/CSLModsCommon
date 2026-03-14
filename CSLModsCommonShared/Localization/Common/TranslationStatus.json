@@ -85,9 +85,9 @@
     "LanguageName": "Polish",
     "Locale": "pl-PL",
     "TotalStrings": 112,
-    "TranslatedStrings": 97,
-    "TranslationProgress": 76,
-    "ApprovalProgress": 76
+    "TranslatedStrings": 112,
+    "TranslationProgress": 100,
+    "ApprovalProgress": 100
   },
   {
     "LanguageId": "pt-BR",
@@ -157,7 +157,7 @@
     "LanguageName": "Chinese Traditional",
     "Locale": "zh-TW",
     "TotalStrings": 112,
-    "TranslatedStrings": 97,
+    "TranslatedStrings": 99,
     "TranslationProgress": 76,
     "ApprovalProgress": 76
   }

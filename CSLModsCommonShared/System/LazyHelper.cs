@@ -1,4 +1,4 @@
-﻿using CSLModsCommon.Threading;
+﻿using System.Threading;
 
 namespace System;
 

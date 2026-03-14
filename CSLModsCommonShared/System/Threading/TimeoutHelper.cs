@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSLModsCommon.Threading;
+﻿namespace System.Threading;
 
 internal static class TimeoutHelper {
     public static uint GetTime() => (uint)Environment.TickCount;

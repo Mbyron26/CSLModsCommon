@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2025-03-10
+- Optimized the silent warning for game–mod version incompatibility.
+- Rebuild Thread.Tasks
+
 ## [1.0.1] - 2025-12-29
 - Fixed an issue where changelog dialog show up every time.
 - Avoid throwing exception when registering duplicate key bindings, return false instead.
