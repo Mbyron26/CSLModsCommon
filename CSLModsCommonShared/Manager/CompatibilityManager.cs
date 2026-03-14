@@ -43,7 +43,7 @@ public class CompatibilityManager : ManagerBase {
 
     internal void CheckAndShowDialogIfNeeded() {
         CheckCompatibility();
-        if (!_currentStatus.IsOnlyFlag(CompatibilityStatus.Normal))
+        if (_currentStatus.HasStatus(CompatibilityStatus.IncompatibleMods))
             ShowCompatibilityDialog();
     }
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace CSLModsCommon.Threading;
+﻿namespace System.Threading;
 
 public struct SpinWait {
     internal const int YieldThreshold = 10;

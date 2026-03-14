@@ -1,5 +1,4 @@
 ﻿using System.Threading;
-using CSLModsCommon.Threading;
 
 namespace System;
 
@@ -8,7 +7,7 @@ public class Lazy<T> {
     private Func<T> _factory;
     private T _value;
 
-    internal T ValueForDebugDisplay => !IsValueCreated ? default(T) : _value;
+    internal T ValueForDebugDisplay => !IsValueCreated ? default : _value;
 
     internal LazyThreadSafetyMode? Mode => LazyHelper.GetMode(_state);
 

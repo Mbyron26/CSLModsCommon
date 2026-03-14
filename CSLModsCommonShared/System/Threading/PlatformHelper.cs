@@ -1,7 +1,6 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
-namespace CSLModsCommon.Threading;
+namespace System.Threading;
 
 internal static class PlatformHelper {
     private const int ProcessorCountRefreshIntervalMS = 30000;
