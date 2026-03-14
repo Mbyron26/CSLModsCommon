@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Security;
 
-namespace CSLModsCommon.Threading;
+namespace System;
 
 public class AggregateException : Exception {
     private const string DefaultMessage = "One or more errors occurred.";
